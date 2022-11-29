@@ -209,3 +209,7 @@ You can access your nginx based application browsing worker node hostname/ip add
 ![27](https://user-images.githubusercontent.com/11027110/204612940-cb87bcfa-0d21-43f0-b2f5-35a769079557.jpg)
 
 We can see the default web page of nginx accessible from a browser which confirms that we have successfully deployed the web application on kubernetes cluster.
+
+
+### Conclusion
+In this tutorial, we have learned to deploy kubernetes cluster on ubuntu server and then we have successfully deployed a web based application on the kubernetes cluster.
