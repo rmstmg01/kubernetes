@@ -199,10 +199,14 @@ $ kubectl get svc nginx-app
 $ kubectl describe svc nginx-app
 ```
 Output of above commands:
+
 ![25](https://user-images.githubusercontent.com/11027110/204612455-1f1ad0e5-7575-492e-8b70-66a208892058.jpg)
+
 You can access your nginx based application browsing worker node hostname/ip address and the port as below:
+
 ![26](https://user-images.githubusercontent.com/11027110/204612889-dbaa065f-aea1-4da3-a732-4af7df9253a9.jpg)
 
+<br>
 ![27](https://user-images.githubusercontent.com/11027110/204612940-cb87bcfa-0d21-43f0-b2f5-35a769079557.jpg)
 
 We can see the default web page of nginx accessible from a browser which confirms that we have successfully deployed the web application on kubernetes cluster.
