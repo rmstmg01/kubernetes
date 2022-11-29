@@ -12,9 +12,11 @@ sudo user with root privilege <br>
 
 We are going to setup lab environment on Linode as below:
 ### Lab Setup
+```
 Master Node:    – k8smaster.ramesht.com.np <br>
 Worker Node 1:  – k8sworker1.ramesht.com.np <br>
 Worker Node 2:  – k8sworker2.ramesht.com.np <br>
+```
 ![1](https://user-images.githubusercontent.com/11027110/204564852-2f3dd4e6-6fbc-433f-8e40-5087fb283333.jpg)
 
 ### Installation Steps
