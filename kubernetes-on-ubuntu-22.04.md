@@ -21,7 +21,7 @@ Worker Node 2:  – k8sworker2.ramesht.com.np
 
 ### Installation Steps
 
-###### 1. Set hostname and add entries in the hosts file
+### 1. Set hostname and add entries in the hosts file
 Login to master node and set hostname using hostnamectl command as below:
 ```
 $ sudo hostnamectl set-hostname "k8smaster.ramesht.com.np"
@@ -40,7 +40,7 @@ Worker node1 IP     k8sworker1.ramesht.com.np k8sworker1
 Worker node2 IP     k8sworker2.ramesht.com.np k8sworker1 
 ```
 
-###### 2. Disable swap & add kernel settings
+### 2. Disable swap & add kernel settings
 Run following commands to disable swap:
 ```
 $ sudo swapoff -a
@@ -95,7 +95,26 @@ Restart and enable containerd service with following command:
 $ sudo systemctl restart containerd
 $ sudo systemctl enable containerd
 ```
+### 4. Add apt repository for Kubernetes
+Execute following commands to add apt repository for Kubernetes:
+```
+$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+$ sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+```
+###### Note: Please check latest kubernetes repository from here : https://packages.cloud.google.com/apt/dists
 
-
+### 5. Install Kubernetes components Kubectl, kubeadm & kubelet
+Install Kubernetes components like kubectl, kubelet and Kubeadm utility on all the nodes running following commands:
+```
+$ sudo apt update
+$ sudo apt install -y kubelet kubeadm kubectl
+$ sudo apt-mark hold kubelet kubeadm kubectl
+```
+### 6. Initialize Kubernetes cluster with Kubeadm command
+Now, we are all set to initialize Kubernetes cluster. Run the following Kubeadm command from the master node only:
+```
+$ sudo kubeadm init --control-plane-endpoint=k8smaster.ramesht.com.np
+```
+![11](https://user-images.githubusercontent.com/11027110/204588706-24e0a162-0fb9-4f34-a0c6-3bda65444f12.jpg)
 
 
