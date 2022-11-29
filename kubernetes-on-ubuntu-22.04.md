@@ -34,10 +34,12 @@ $ sudo hostnamectl set-hostname "k8sworker2.ramesht.com.np"
 $ exec bash
 ```
 Add the following entries in /etc/hosts file on each node
+```
+Master node's IP    k8smaster.ramesht.com.np  k8smaster 
+Worker node1 IP     k8sworker1.ramesht.com.np k8sworker1 
+Worker node2 IP     k8sworker2.ramesht.com.np k8sworker1 
+```
 
-<Master node's IP >   k8smaster.ramesht.com.np k8smaster <br>
-<Worker node1 IP>     k8sworker1.ramesht.com.np k8sworker1 <br>
-<Worker node2 IP>     k8sworker2.ramesht.com.np k8sworker1 <br>
 ###### 2. Disable swap & add kernel settings
 Run following commands to disable swap:
 ```
