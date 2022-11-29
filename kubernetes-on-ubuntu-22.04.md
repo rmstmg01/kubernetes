@@ -175,5 +175,34 @@ $ kubectl get nodes
 ![22](https://user-images.githubusercontent.com/11027110/204597153-1eb544aa-c261-4f79-baec-8a8969e25863.jpg)
 
 Now, we see that nodes are active and we can say that our Kubernetes cluster is functional.
+### 7. Test Kubernetes Installation
+To test Kubernetes installation, we are trying to deploy nginx based application and try to access it.
+```
+$ kubectl create deployment nginx-app --image=nginx --replicas=2
+```
+Check the status of nginx-app deployment
+```
+$ kubectl get deployment nginx-app
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-app   2/2     2            2           72s
+$
+```
+Expose the deployment as NodePort,
+```
+$ kubectl expose deployment nginx-app --type=NodePort --port=80
+service/nginx-app exposed
+$
+```
+Run following commands to view service status
+```
+$ kubectl get svc nginx-app
+$ kubectl describe svc nginx-app
+```
+Output of above commands:
+![25](https://user-images.githubusercontent.com/11027110/204612455-1f1ad0e5-7575-492e-8b70-66a208892058.jpg)
+You can access your nginx based application browsing worker node hostname/ip address and the port as below:
+![26](https://user-images.githubusercontent.com/11027110/204612889-dbaa065f-aea1-4da3-a732-4af7df9253a9.jpg)
 
+![27](https://user-images.githubusercontent.com/11027110/204612940-cb87bcfa-0d21-43f0-b2f5-35a769079557.jpg)
 
+We can see the default web page of nginx accessible from a browser which confirms that we have successfully deployed the web application on kubernetes cluster.
