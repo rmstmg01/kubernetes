@@ -117,4 +117,40 @@ $ sudo kubeadm init --control-plane-endpoint=k8smaster.ramesht.com.np
 ```
 ![11](https://user-images.githubusercontent.com/11027110/204588706-24e0a162-0fb9-4f34-a0c6-3bda65444f12.jpg)
 
+From the output above, we see that control-plane has been initialize successfully. In the output, we can find the set of commands for interacting the cluster and also the command for worker node to join the cluster.
+
+So, to start interacting with the cluster, run following commands from the master node:
+```
+$ mkdir -p $HOME/.kube
+$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+Now, run following kubectl commands to view cluster and node status:
+``
+$ kubectl cluster-info
+$ kubectl get nodes
+```
+![13](https://user-images.githubusercontent.com/11027110/204589992-7d167fdc-f383-4162-8077-3aa0234f6eb8.jpg)
+
+![not](https://user-images.githubusercontent.com/11027110/204591113-362159f3-bb73-4132-a774-72a8d6b8702b.png)
+
+Join both the worker nodes to the cluster, we need to run the command as below:
+```
+sudo kubeadm join k8smaster.ramesht.com.np:6443 --token 1so3re.alopyer4tz5329ut   --discovery-token-ca-cert-hash sha256:d69eed5765929759f33082f08c930b7f975027fe812a0f74b1300b0ff4859e1b
+```
+Output from both the worker nodes are shown in the screenshot below:
+![16](https://user-images.githubusercontent.com/11027110/204592060-77285176-d594-4c76-88d4-79596c709801.jpg)
+
+![17](https://user-images.githubusercontent.com/11027110/204592114-84f66f7d-f3c1-4497-adb4-e797a56f2f79.jpg)
+
+Check the nodes status from master node using kubectl command:
+```
+$ kubectl get nodes
+```
+![18](https://user-images.githubusercontent.com/11027110/204592750-9036526f-cecb-416a-839d-eeea0a5232be.jpg)
+
+We can see the nodes status is ‘NotReady’, so to make it active and running, we must install CNI (Container Network Interface) or network add-on plugins like Calico, Flannel and Weave-net.
+
+### 6. Install Calico Pod Network Add-on
+
 
