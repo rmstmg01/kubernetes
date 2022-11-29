@@ -70,6 +70,7 @@ $ sudo sysctl --system
 ```
 
 ### 3. Install containerd run time
+
 In this tutorial, we are going to use containerd run time for our Kubernetes cluster. So, we need to install dependencies before installing containerd:
 ```
 $ sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
@@ -115,6 +116,7 @@ Now, we are all set to initialize Kubernetes cluster. Run the following Kubeadm 
 ```
 $ sudo kubeadm init --control-plane-endpoint=k8smaster.ramesht.com.np
 ```
+
 ![11](https://user-images.githubusercontent.com/11027110/204588706-24e0a162-0fb9-4f34-a0c6-3bda65444f12.jpg)
 
 From the output above, we see that control-plane has been initialize successfully. In the output, we can find the set of commands for interacting the cluster and also the command for worker node to join the cluster.
@@ -126,10 +128,11 @@ $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 Now, run following kubectl commands to view cluster and node status:
-``
+```
 $ kubectl cluster-info
 $ kubectl get nodes
 ```
+
 ![13](https://user-images.githubusercontent.com/11027110/204589992-7d167fdc-f383-4162-8077-3aa0234f6eb8.jpg)
 
 ![not](https://user-images.githubusercontent.com/11027110/204591113-362159f3-bb73-4132-a774-72a8d6b8702b.png)
@@ -152,5 +155,17 @@ $ kubectl get nodes
 We can see the nodes status is ‘NotReady’, so to make it active and running, we must install CNI (Container Network Interface) or network add-on plugins like Calico, Flannel and Weave-net.
 
 ### 6. Install Calico Pod Network Add-on
+Run curl and kubectl command to install Calico network plugin from the master node:
+```
+$ curl https://projectcalico.docs.tigera.io/manifests/calico.yaml -O
+$ kubectl apply -f calico.yaml
+```
+![19](https://user-images.githubusercontent.com/11027110/204594515-1a7b4f0a-9b3f-470d-b7d1-beac87d58289.jpg)
+
+Verify the status of pods in kube-system namespace:
+```
+$ kubectl get pods -n kube-system
+```
+![20](https://user-images.githubusercontent.com/11027110/204594703-c48677f3-4b5e-4be4-9094-7c4e2330e78e.jpg)
 
 
