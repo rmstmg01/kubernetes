@@ -168,4 +168,12 @@ $ kubectl get pods -n kube-system
 ```
 ![20](https://user-images.githubusercontent.com/11027110/204594703-c48677f3-4b5e-4be4-9094-7c4e2330e78e.jpg)
 
+Now, check the nodes status again with following command:
+```
+$ kubectl get nodes
+```
+![22](https://user-images.githubusercontent.com/11027110/204597153-1eb544aa-c261-4f79-baec-8a8969e25863.jpg)
+
+Now, we see that nodes are active and we can say that our Kubernetes cluster is functional.
+
 
