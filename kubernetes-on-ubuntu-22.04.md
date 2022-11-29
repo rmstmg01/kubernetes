@@ -75,22 +75,21 @@ In this tutorial, we are going to use containerd run time for our Kubernetes clu
 $ sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
 ```
 Now, we need to enable docker repository:
+
 ```
 $ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker.gpg
 $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
-
 Now, run following command to install containerd: 
-``
+```
 $ sudo apt update
 $ sudo apt install -y containerd.io
-``
+```
 Configure containerd to start it using systemd as cgroup:
 ```
 $ containerd config default | sudo tee /etc/containerd/config.toml >/dev/null 2>&1
 $ sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
 ```
-
 Restart and enable containerd service with following command:
 ```
 $ sudo systemctl restart containerd
