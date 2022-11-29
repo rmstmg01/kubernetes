@@ -13,9 +13,9 @@ sudo user with root privilege <br>
 We are going to setup lab environment on Linode as below:
 ### Lab Setup
 ```
-Master Node:    – k8smaster.ramesht.com.np <br>
-Worker Node 1:  – k8sworker1.ramesht.com.np <br>
-Worker Node 2:  – k8sworker2.ramesht.com.np <br>
+Master Node:    – k8smaster.ramesht.com.np 
+Worker Node 1:  – k8sworker1.ramesht.com.np 
+Worker Node 2:  – k8sworker2.ramesht.com.np 
 ```
 ![1](https://user-images.githubusercontent.com/11027110/204564852-2f3dd4e6-6fbc-433f-8e40-5087fb283333.jpg)
 
@@ -44,7 +44,7 @@ Run following commands to disable swap:
 $ sudo swapoff -a
 $ sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
-Load the following kernel modules on all the nodes:
+Load the following kernel modules on all nodes:
 ```
 $ sudo tee /etc/modules-load.d/containerd.conf <<EOF
 overlay
@@ -53,6 +53,21 @@ EOF
 $ sudo modprobe overlay
 $ sudo modprobe br_netfilter
 ```
+
+Set following Kernel parameters for Kubernetes executing following command:
+```
+$ sudo tee /etc/sysctl.d/kubernetes.conf <<EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+EOF 
+```
+Reload the above changes, running following command:
+```
+$ sudo sysctl --system
+```
+
+
 
 
 
